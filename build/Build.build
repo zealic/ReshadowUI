@@ -26,6 +26,7 @@
   <Target Name="CleanUp">
     <RemoveDir Directories="$(Content-AddOnsDir)" />
     <MakeDir Directories="$(Content-AddOnsDir)" />
+    <Delete Files="$(ArchiveFile)" />
   </Target>
   
   <Target Name="Build" DependsOnTargets="CleanUp;ExtractThirdArchiveFiles;ArchiveZip">
