@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+    ToolsVersion="4.0">
+  <PropertyGroup>
+    <ZealibBuildPath Condition="'$(ZealibBuildPath)' == ''">$(MSBuildProjectDirectory)\Zealib.Build</ZealibBuildPath>
+  </PropertyGroup>
+  <Import Project="$(ZealibBuildPath)\Zealib.Build.targets" />
+  <Import Project="Application.props" />
+  
+  <PropertyGroup>
+    <ProjectName>ReshadowUI</ProjectName>
+    <Content-TargetDir>$(TargetDir)\bin\</Content-TargetDir>
+    <Content-AddOnsDir>$(Content-TargetDir)\Interface\AddOns\</Content-AddOnsDir>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <Timestamp>$([System.DateTime]::Now.ToString("yyyy-MM-dd HH:mm:ss zzz"))</Timestamp>
+    <FullVersion>$(VersionMajor).$(VersionMinor).$(VersionBuild).$(VersionRevision)</FullVersion>
+    <ArchiveFile>$(TargetDir)\$(ProjectName)-$(FullVersion).7z</ArchiveFile>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <ThirdArchiveFiles Include="$(SrcDir)\*.zip" />
+  </ItemGroup>
+  
+  <Target Name="CleanUp">
+    <RemoveDir Directories="$(Content-AddOnsDir)" />
+    <MakeDir Directories="$(Content-AddOnsDir)" />
+  </Target>
+  
+  <Target Name="Build" DependsOnTargets="CleanUp;ExtractThirdArchiveFiles;ArchiveZip">
+    <Message Text="Build successful!" />
+  </Target>
+  
+  <Target Name="ExtractThirdArchiveFiles">
+    <Exec Command='"$(BuildDir)\unzip.exe" -o "%(ThirdArchiveFiles.Identity)"' WorkingDirectory="$(Content-AddOnsDir)" />
+  </Target>
+  
+  <Target Name="ArchiveZip" AfterTargets="Build">
+    <Exec Command='"$(BuildDir)\7za.exe" a "$(ArchiveFile)"' WorkingDirectory="$(Content-TargetDir)"/>
+  </Target>
+</Project>

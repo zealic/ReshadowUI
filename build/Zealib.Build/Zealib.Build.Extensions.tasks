@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ZealibBuildPath Condition="'$(ZealibBuildPath)' == ''">$(MSBuildExtensionsPath)\Zealib.Build</ZealibBuildPath>
+    <ZealibBuild-ExtensionsPath>$(ZealibBuildPath)\Configuration\Zealib.Build.Extensions</ZealibBuild-ExtensionsPath>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <MSBuildCommunityTasksPath>$(ZealibBuild-ExtensionsPath)\MSBuild.Community.Tasks\</MSBuildCommunityTasksPath>
+    <ExtensionTasksPath>$(ZealibBuild-ExtensionsPath)\MSBuild.ExtensionPack\</ExtensionTasksPath>
+    <T4TasksPath>$(MSBuildExtensionsPath)\Microsoft\VisualStudio\TextTemplating\v10.0\</T4TasksPath>
+    <T4TasksPath Condition="!Exists($(T4TasksPath))">$(ZealibBuild-ExtensionsPath)\T4\</T4TasksPath>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <T4-TargetsFile>$(T4TasksPath)\Microsoft.TextTemplating.targets</T4-TargetsFile>
+  </PropertyGroup>
+  
+  <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets"/>
+  <Import Project="$(ExtensionTasksPath)\MSBuild.ExtensionPack.tasks" />
+</Project>
