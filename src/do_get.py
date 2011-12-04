@@ -71,6 +71,7 @@ if __name__ == "__main__":
       "http://www.curse.com/addons/wow/gathermate2_data/555089",          # GatherMate2_Data
       "http://www.curse.com/addons/wow/grid2/556653",                     # Grid2
       "http://www.curse.com/addons/wow/inflight-taxi-timer/556048",       # InFlight
+      "http://www.curse.com/addons/wow/jpack/551562",                     # JPack
       "http://www.curse.com/addons/wow/postal/529429",                    # Postal
       "http://www.curse.com/addons/wow/powerauras-classic/557951",        # PowerAuras
       "http://www.curse.com/addons/wow/mik-scrolling-battle-text/556071", # MikScrollingBattleText
