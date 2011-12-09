@@ -98,6 +98,7 @@ if __name__ == "__main__":
       "range-display",             # RangeDisplay
       "rating-buster",             # RatingBuster
       "recount",                   # Recount
+      "reforgelite",               # ReforgeLite
       "silver-dragon",             # SilverDragon
       "spellflash",                # SpellFlash
       "xperl",                     # X-Perl UnitFrame
