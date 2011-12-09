@@ -1,5 +1,9 @@
 from HTMLParser import HTMLParser
 import os, sys, urllib2
+import threading, time
+
+def log(msg):
+  sys.stdout.write("%s\n" % (msg))
 
 class CurseDownloadPageHTMLParser(HTMLParser):
   def __init__(self):
@@ -26,8 +30,9 @@ def download_file(url, dir):
   base_name = os.path.basename(url)
   if not os.path.exists(dir):
     os.makedirs(dir)
-  
+
   file_path = os.path.join(dir, base_name)
+
   re = urllib2.Request(url)
   target_file = file(file_path, 'wb')
   try:
@@ -51,55 +56,89 @@ def get_download_links(url):
   curseParser = CurseDownloadPageHTMLParser()
   curseParser.feed(html)
   curseParser.close()
-  return curseParser.links
+  return (len(curseParser.links) > 0 and curseParser.links or [None])[0]
+
+def get_package_core(notifier, download_link, link_is_curse_name):
+  result = "[%s] DONE!" % (notifier.name)
+  try:
+    if link_is_curse_name == True:
+      curse_page = "http://www.curse.com/addons/wow/%s/download" % (download_link)
+      log("[%s] Fetching addon '%s' download link..." % (notifier.name, curse_page))
+      download_link = get_download_links(curse_page)
+    if download_link == None:
+      log("[%s] No download link!" % (notifier.name))
+    else:
+      log("[%s] Downloading '%s' ..." % (notifier.name, download_link))
+      download_file(download_link, os.getcwd())
+  except Exception, e:
+    result = "[%s] FAILED, %s" % (notifier.name, str(e))
+  notifier.message = result
+  notifier.set()
+
+def async_get_package(download_link, link_is_curse_name):
+  notifier = threading.Event()
+  notifier.name = download_link
+  runner = threading.Thread(target=get_package_core, args = (notifier, download_link, link_is_curse_name))
+  runner.name = download_link
+  runner.start()
+  return notifier
 
 if __name__ == "__main__":
-    all_addon_pages = [
-      "http://www.curse.com/addons/wow/ace3/555250",                      # Ace3
-      "http://www.curse.com/addons/wow/npcscan/555853",                   # _NPCScan
-      "http://www.curse.com/addons/wow/npcscan-overlay/555852",           # _NPCScan.Overlay
-      "http://www.curse.com/addons/wow/ark-inventory/555718",             # ArkInventory
-      "http://www.curse.com/addons/wow/atlasloot-enhanced/555223",        # AtlasLoot Enhanced
-      "http://www.curse.com/addons/wow/broker_equipment/531431",          # Broker_Equipment
-      "http://www.curse.com/addons/wow/broker-portals/557793",            # Broker_Portal
-      "http://www.curse.com/addons/wow/broker_recountfu/547068",          # Broker_RecountFu
-      "http://www.curse.com/addons/wow/broker_sysmon/527030",             # Broker_SysMon
-      "http://www.curse.com/addons/wow/chocolatebar/556665",              # Chcolatebar
-      "http://www.curse.com/addons/wow/deadly-boss-mods/557298",          # DBM
-      "http://www.curse.com/addons/wow/fizzle/556215",                    # Fizzle
-      "http://www.curse.com/addons/wow/gathermate2/529390",               # GatherMate2
-      "http://www.curse.com/addons/wow/gathermate2_data/555089",          # GatherMate2_Data
-      "http://www.curse.com/addons/wow/grid2/556653",                     # Grid2
-      "http://www.curse.com/addons/wow/inflight-taxi-timer/556048",       # InFlight
-      "http://www.curse.com/addons/wow/jpack/551562",                     # JPack
-      "http://www.curse.com/addons/wow/postal/529429",                    # Postal
-      "http://www.curse.com/addons/wow/powerauras-classic/557951",        # PowerAuras
-      "http://www.curse.com/addons/wow/mik-scrolling-battle-text/556071", # MikScrollingBattleText
-      "http://www.curse.com/addons/wow/quartz/556504",                    # Quartz
-      "http://www.curse.com/addons/wow/questhubber/555812",               # QuestHubber
-      "http://www.curse.com/addons/wow/range-display/556323",             # RangeDisplay
-      "http://www.curse.com/addons/wow/rating-buster/526602",             # RatingBuster
-      "http://www.curse.com/addons/wow/recount/555916",                   # Recount
-      "http://www.curse.com/addons/wow/silver-dragon/555791",             # SilverDragon
-      "http://www.curse.com/addons/wow/spellflash/556290",                # SpellFlash
-      "http://www.curse.com/addons/wow/xperl/555513",                     # X-Perl UnitFrame
-      "http://www.curse.com/addons/wow/coordinates/557325",               # Coordinates
-      "http://www.curse.com/addons/wow/inspect-equip/526511",             # InspectEquip
-      "http://www.curse.com/addons/wow/tradeskill-info/502280",           # TradeSkillInfo
-      "http://www.curse.com/addons/wow/vendomatic/558093",                # Vend-o-matic
+    curse_addon_names = [
+      "ace3",                      # Ace3
+      "npcscan",                   # _NPCScan
+      "npcscan-overlay",           # _NPCScan.Overlay
+      "ark-inventory",             # ArkInventory
+      "atlasloot-enhanced",        # AtlasLoot Enhanced
+      "broker_equipment",          # Broker_Equipment
+      "broker-portals",            # Broker_Portal
+      "broker_recountfu",          # Broker_RecountFu
+      "broker_sysmon",             # Broker_SysMon
+      "chocolatebar",              # Chcolatebar
+      "deadly-boss-mods",          # DBM
+      "fizzle",                    # Fizzle
+      "gathermate2",               # GatherMate2
+      "gathermate2_data",          # GatherMate2_Data
+      "grid2",                     # Grid2
+      "inflight-taxi-timer",       # InFlight
+      "jpack",                     # JPack
+      "postal",                    # Postal
+      "powerauras-classic",        # PowerAuras
+      "mik-scrolling-battle-text", # MikScrollingBattleText
+      "quartz",                    # Quartz
+      "questhubber",               # QuestHubber
+      "range-display",             # RangeDisplay
+      "rating-buster",             # RatingBuster
+      "recount",                   # Recount
+      "silver-dragon",             # SilverDragon
+      "spellflash",                # SpellFlash
+      "xperl",                     # X-Perl UnitFrame
+      "coordinates",               # Coordinates
+      "inspect-equip",             # InspectEquip
+      "tradeskill-info",           # TradeSkillInfo
+      "vendomatic",                # Vend-o-matic
     ]
     
     addational_links = [
       "http://fizzwidget.com/downloads/gfw-factionfriend-4-3.zip"         # FactionFriend
     ]
     
-    links = []
-    print("Parseing all links...")
-    for addon_page in all_addon_pages:
-      links += get_download_links(addon_page)
-    links += addational_links
+    notifiers = []
+    for i in xrange(0, len(curse_addon_names)):
+      notifiers.append(async_get_package(curse_addon_names[i], True))
+    for i in xrange(0, len(addational_links)):
+      notifiers.append(async_get_package(addational_links[i], False))
     
-    for link in links:
-      print("Downloading from %s ..." % (link))
-      download_file(link, os.getcwd())
-    print("ALL DONE!")
+    taskCount = len(notifiers)
+    while len(notifiers) != 0:
+        finishedTask = None
+        for notifier in notifiers:
+          notifier.wait(0)
+          if notifier.is_set():
+            finishedTask = notifier
+            break;
+        if finishedTask != None:
+          notifiers.remove(finishedTask)
+          log(">> %d/%d : %s" %(taskCount - len(notifiers), taskCount, finishedTask.message))
+        time.sleep(0.05)
+    log("ALL DONE!")
