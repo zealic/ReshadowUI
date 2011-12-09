@@ -5,20 +5,6 @@ import threading, time
 def log(msg):
   sys.stdout.write("%s\n" % (msg))
 
-class CurseDownloadPageHTMLParser(HTMLParser):
-  def __init__(self):
-    HTMLParser.__init__(self)
-    self.links = []
-
-  def handle_starttag(self, tag, attrs):
-    #print "Encountered the beginning of a %s tag" % tag
-    if tag == "a":
-      if len(attrs) == 0: pass
-      else:
-        for (variable, value)  in attrs:
-          if variable == "data-href":
-            self.links.append(value)
-
 def fetch_http_proxy():
   if os.environ.has_key("HTTP_PROXY"):
       proxy_support = urllib2.ProxyHandler({'http': os.environ["HTTP_PROXY"]})
@@ -53,10 +39,9 @@ def get_download_links(url):
   req = urllib2.Request(url)  
   response = urllib2.urlopen(req)
   html = response.read()
-  curseParser = CurseDownloadPageHTMLParser()
-  curseParser.feed(html)
-  curseParser.close()
-  return (len(curseParser.links) > 0 and curseParser.links or [None])[0]
+  from BeautifulSoup import BeautifulSoup 
+  soup = BeautifulSoup(html)
+  return soup.find("a", {"class":"download-link"})["data-href"]
 
 def get_package_core(notifier, download_link, link_is_curse_name):
   result = "[%s] DONE!" % (notifier.name)
@@ -84,6 +69,9 @@ def async_get_package(download_link, link_is_curse_name):
   return notifier
 
 if __name__ == "__main__":
+    import sys, os
+    sys.path.append(os.path.join(sys.path[0], "Lib"))
+    
     curse_addon_names = [
       "ace3",                      # Ace3
       "npcscan",                   # _NPCScan
