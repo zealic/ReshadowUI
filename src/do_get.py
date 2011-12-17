@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from HTMLParser import HTMLParser
 import os, sys, urllib2
 import threading, time
@@ -101,6 +102,7 @@ if __name__ == "__main__":
       "recount",                   # Recount
       "reforgelite",               # ReforgeLite
       "silver-dragon",             # SilverDragon
+      "snoopy-inspect".            # Snoopy Inspect : 超出距离依然能查看
       "spellflash",                # SpellFlash
       "spellflash_mage",           # SpellFlash: Mage
       "xperl",                     # X-Perl UnitFrame
