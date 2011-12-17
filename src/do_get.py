@@ -95,12 +95,14 @@ if __name__ == "__main__":
       "mik-scrolling-battle-text", # MikScrollingBattleText
       "quartz",                    # Quartz
       "questhubber",               # QuestHubber
+      "rangecolors",               # RangeColors
       "range-display",             # RangeDisplay
       "rating-buster",             # RatingBuster
       "recount",                   # Recount
       "reforgelite",               # ReforgeLite
       "silver-dragon",             # SilverDragon
       "spellflash",                # SpellFlash
+      "spellflash_mage",           # SpellFlash: Mage
       "xperl",                     # X-Perl UnitFrame
       "coordinates",               # Coordinates
       "inspect-equip",             # InspectEquip
