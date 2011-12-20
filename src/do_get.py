@@ -102,9 +102,19 @@ if __name__ == "__main__":
       "recount",                   # Recount
       "reforgelite",               # ReforgeLite
       "silver-dragon",             # SilverDragon
-      "snoopy-inspect".            # Snoopy Inspect : 超出距离依然能查看
+      "snoopy-inspect",            # Snoopy Inspect : 超出距离依然能查看
       "spellflash",                # SpellFlash
+      "spellflash_warlock",        # SpellFlash: Warlock
+      "spellflash_hunter",         # SpellFlash: Hunter
+      "spellflash_warrior",        # SpellFlash: Warrior
+      "spellflash_racials",        # SpellFlash: Racials
+      "spellflash_druid",          # SpellFlash: Druid
+      "spellflash-priest",         # SpellFlash: Priest
       "spellflash_mage",           # SpellFlash: Mage
+      "spellflash_paladin",        # SpellFlash: Paladin
+      "spellflash-death-knight",   # SpellFlash: Death Knight
+      "spellflash_healadin",       # SpellFlash: Healadin
+      "spellflash_rogue",          # SpellFlash: Rogue
       "xperl",                     # X-Perl UnitFrame
       "coordinates",               # Coordinates
       "inspect-equip",             # InspectEquip
