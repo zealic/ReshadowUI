@@ -74,7 +74,8 @@ if __name__ == "__main__":
     }
     
     wowinterface_addons = {
-      "OmoniCC"                   : "4836"
+      "OmoniCC"                   : "4836",
+      "WitchHunt"                 : "8513",
     }
 
     curse_addons = {
@@ -107,6 +108,7 @@ if __name__ == "__main__":
       "ReforgeLite"               : "reforgelite",
       "SilverDragon"              : "silver-dragon",
       "Snoopy Inspect"            : "snoopy-inspect", # 超出距离依然能查看
+      "TellMeWhen"                : "tellmewhen",
       "X-Perl UnitFrame"          : "xperl",
       "Coordinates"               : "coordinates",
       "InspectEquip"              : "inspect-equip",
