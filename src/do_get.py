@@ -56,7 +56,6 @@ def get_package_core(task, name, id, fetcher):
             download_file(download_link, os.getcwd(), base_name)
     except Exception, e:
         task.message = "[%s] FAILED, %s" % (name, str(e))
-        raise
     task.event.set()
 
 def new_task(name, id, fetcher):
