@@ -74,7 +74,6 @@ if __name__ == "__main__":
     
     wowinterface_addons = {
       "OmoniCC"                   : "4836",
-      "WitchHunt"                 : "8513",
     }
 
     curse_addons = {
