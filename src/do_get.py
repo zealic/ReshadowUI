@@ -40,31 +40,30 @@ def get_wowinterface_download_info(name, id):
     result.link = url
     return result
 
-def get_package_core(task, name, id, fetcher):
-    task.message = "[%s] DONE!" % (name)
+def get_package_core(task):
+    message = "[%s] DONE!" % (task.name)
     try:
-        log("[%s] Fetching '%s' download info..." % (name, id))
-        info = fetcher(name, id)
+        log("[%s] Fetching '%s' download info..." % (task.name, task.id))
+        info = task.fetcher(task.name, task.id)
         download_link = info.link
         base_name = None
         if info.attachment:
             base_name = info.attachment.name
         if download_link == None:
-            log("[%s] No download link!" % (name))
+            log("[%s] No download link!" % (task.name))
         else:
-            log("[%s] Downloading '%s' ..." % (name, download_link))
+            log("[%s] Downloading '%s' ..." % (task.name, download_link))
             download_file(download_link, os.getcwd(), base_name)
     except Exception, e:
-        task.message = "[%s] FAILED, %s" % (name, str(e))
-    task.event.set()
+        message = "[%s] FAILED, %s" % (task.name, str(e))
+    return message
 
 def new_task(name, id, fetcher):
     from StringIO import StringIO
     task = StringIO()
-    task.event = threading.Event()
-    task.runner = threading.Thread(target=get_package_core, args = (task, name, id, fetcher))
-    task.runner.name = name
-    task.runner.start()
+    task.name = name
+    task.id = id
+    task.fetcher = fetcher
     return task
 
 def load_configuration(config_file):
@@ -77,27 +76,40 @@ def load_configuration(config_file):
     report_info("Invalid configuration file '%s', %s" % (config_file, e.message))
     exit(EX_INVALID_JSON)
 
-
-if __name__ == "__main__":
+def get_tasks():
     tasks = []
     data = load_configuration("addons.json")
     for k in data:
-      group = k
-      addons = data[k]
-      fetcher = globals()["get_%s_download_info" % (group)]
-      for name in addons:
-        tasks.append(new_task(name, addons[name], fetcher))
+        group = k
+        addons = data[k]
+        fetcher = globals()["get_%s_download_info" % (group)]
+        for name in addons:
+            tasks.append(new_task(name, addons[name], fetcher))
+    return tasks
+
+def job_core(tasks):
+    while tasks.qsize() > 0:
+        task = tasks.get()
+        msg  = get_package_core(task)
+        log(">> [%s] : %s" % (task.name, msg))
+        if tasks.qsize() != 0:
+            log("   Reaming %d." % (tasks.qsize()))
+        tasks.task_done()
+
+def start_jobs(tasks):
+    JOBS_SIZE = 5
+    from threading import Thread
+    for i in xrange(1, JOBS_SIZE):
+        runner = Thread(target=job_core, args = (tasks,))
+        runner.start()
+
+if __name__ == "__main__":
+    from Queue import Queue
+    runningTasks = Queue()
+    for task in get_tasks():
+        runningTasks.put(task)
     
-    taskCount = len(tasks)
-    while len(tasks) != 0:
-        finishedTask = None
-        for task in tasks:
-            task.event.wait(0)
-            if task.event.is_set():
-                finishedTask = task
-                break;
-        if finishedTask != None:
-            tasks.remove(finishedTask)
-            log(">> %d/%d : %s" %(taskCount - len(tasks), taskCount, finishedTask.message))
-        time.sleep(0.05)
+    start_jobs(runningTasks)
+    runningTasks.join()
+    
     log("ALL DONE!")
