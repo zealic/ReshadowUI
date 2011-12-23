@@ -1,0 +1,47 @@
+{
+  "general" : {
+    "FactionFriend"             : "http://fizzwidget.com/downloads/gfw-factionfriend-4-3.zip"
+  },
+  
+  "wowinterface" : {
+    "OmoniCC"                   : "4836"
+  },
+
+  "curse" : {
+    "Ace3"                      : "ace3",
+    "_NPCScan"                  : "npcscan",
+    "_NPCScan.Overlay"          : "npcscan-overlay",
+    "ArkInventory"              : "ark-inventory",
+    "AtlasLoot Enhanced"        : "atlasloot-enhanced",
+    "Broker_Equipment"          : "broker_equipment",
+    "Broker_Portal"             : "broker-portals",
+    "Broker_RecountFu"          : "broker_recountfu",
+    "Broker_SysMon"             : "broker_sysmon",
+    "Chcolatebar"               : "chocolatebar",
+    "DBM"                       : "deadly-boss-mods",
+    "Fizzle"                    : "fizzle",
+    "GatherMate2"               : "gathermate2",
+    "GatherMate2_Data"          : "gathermate2_data",
+    "Grid2"                     : "grid2",
+    "InFlight"                  : "inflight-taxi-timer",
+    "JPack"                     : "jpack",
+    "Postal"                    : "postal",
+    "PowerAuras"                : "powerauras-classic",
+    "MikScrollingBattleText"    : "mik-scrolling-battle-text",
+    "Quartz"                    : "quartz",
+    "QuestHubber"               : "questhubber",
+    "RangeColors"               : "rangecolors",
+    "RangeDisplay"              : "range-display",
+    "RatingBuster"              : "rating-buster",
+    "Recount"                   : "recount",
+    "ReforgeLite"               : "reforgelite",
+    "SilverDragon"              : "silver-dragon",
+    "Snoopy Inspect"            : "snoopy-inspect",
+    "TellMeWhen"                : "tellmewhen",
+    "X-Perl UnitFrame"          : "xperl",
+    "Coordinates"               : "coordinates",
+    "InspectEquip"              : "inspect-equip",
+    "TradeSkillInfo"            : "tradeskill-info",
+    "Vend-o-matic"              : "vendomatic"
+  }
+}

@@ -1,8 +1,8 @@
 import os, sys, urllib2
 from StringIO import StringIO
 
-def __init__():
-    __fetch_http_proxy()
+#def __init__():
+    #__fetch_http_proxy()
 
 def log(msg):
     sys.stdout.write("%s\n" % (msg))

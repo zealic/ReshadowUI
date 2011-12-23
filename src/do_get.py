@@ -67,60 +67,26 @@ def new_task(name, id, fetcher):
     task.runner.start()
     return task
 
-if __name__ == "__main__":
-    general_addons = {
-      "FactionFriend"             : "http://fizzwidget.com/downloads/gfw-factionfriend-4-3.zip"
-    }
-    
-    wowinterface_addons = {
-      "OmoniCC"                   : "4836",
-    }
+def load_configuration(config_file):
+  import json
+  data = file(config_file).read()
+  
+  try:
+    return json.loads(data)
+  except ValueError as e:
+    report_info("Invalid configuration file '%s', %s" % (config_file, e.message))
+    exit(EX_INVALID_JSON)
 
-    curse_addons = {
-      "Ace3"                      : "ace3",
-      "_NPCScan"                  : "npcscan",
-      "_NPCScan.Overlay"          : "npcscan-overlay",
-      "ArkInventory"              : "ark-inventory",
-      "AtlasLoot Enhanced"        : "atlasloot-enhanced",
-      "Broker_Equipment"          : "broker_equipment",
-      "Broker_Portal"             : "broker-portals",
-      "Broker_RecountFu"          : "broker_recountfu",
-      "Broker_SysMon"             : "broker_sysmon",
-      "Chcolatebar"               : "chocolatebar",
-      "DBM"                       : "deadly-boss-mods",
-      "Fizzle"                    : "fizzle",
-      "GatherMate2"               : "gathermate2",
-      "GatherMate2_Data"          : "gathermate2_data",
-      "Grid2"                     : "grid2",
-      "InFlight"                  : "inflight-taxi-timer",
-      "JPack"                     : "jpack",
-      "Postal"                    : "postal",
-      "PowerAuras"                : "powerauras-classic",
-      "MikScrollingBattleText"    : "mik-scrolling-battle-text",
-      "Quartz"                    : "quartz",
-      "QuestHubber"               : "questhubber",
-      "RangeColors"               : "rangecolors",
-      "RangeDisplay"              : "range-display",
-      "RatingBuster"              : "rating-buster",
-      "Recount"                   : "recount",
-      "ReforgeLite"               : "reforgelite",
-      "SilverDragon"              : "silver-dragon",
-      "Snoopy Inspect"            : "snoopy-inspect", # 超出距离依然能查看
-      "TellMeWhen"                : "tellmewhen",
-      "X-Perl UnitFrame"          : "xperl",
-      "Coordinates"               : "coordinates",
-      "InspectEquip"              : "inspect-equip",
-      "TradeSkillInfo"            : "tradeskill-info",
-      "Vend-o-matic"              : "vendomatic",
-    }
-    
+
+if __name__ == "__main__":
     tasks = []
-    for k in general_addons:
-        tasks.append(new_task(k, general_addons[k], get_general_download_info))
-    for k in wowinterface_addons:
-        tasks.append(new_task(k, wowinterface_addons[k], get_wowinterface_download_info))
-    for k in curse_addons:
-        tasks.append(new_task(k, curse_addons[k], get_curse_download_info))
+    data = load_configuration("addons.json")
+    for k in data:
+      group = k
+      addons = data[k]
+      fetcher = globals()["get_%s_download_info" % (group)]
+      for name in addons:
+        tasks.append(new_task(name, addons[name], fetcher))
     
     taskCount = len(tasks)
     while len(tasks) != 0:
