@@ -2,7 +2,7 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
     ToolsVersion="4.0">
   <PropertyGroup>
-    <ZealibBuildPath Condition="'$(ZealibBuildPath)' == ''">$(MSBuildProjectDirectory)\Zealib.Build</ZealibBuildPath>
+    <ZealibBuildPath Condition="'$(ZealibBuildPath)' == ''">$([MSBuild]::Unescape('$(MSBuildProjectDirectory)\Zealib.Build'))</ZealibBuildPath>
   </PropertyGroup>
   <Import Project="$(ZealibBuildPath)\Zealib.Build.targets" />
   <Import Project="Application.props" />
