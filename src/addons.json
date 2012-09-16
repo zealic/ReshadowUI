@@ -4,7 +4,8 @@
   },
   
   "wowinterface" : {
-    "OmoniCC"                   : "4836"
+    "OmoniCC"                   : "4836",
+    "PowerAuras"                : "21531"
   },
 
   "curse" : {
@@ -26,7 +27,6 @@
     "InFlight"                  : "inflight-taxi-timer",
     "JPack"                     : "jpack",
     "Postal"                    : "postal",
-    "PowerAuras"                : "powerauras-classic",
     "MikScrollingBattleText"    : "mik-scrolling-battle-text",
     "Quartz"                    : "quartz",
     "QuestHubber"               : "questhubber",
