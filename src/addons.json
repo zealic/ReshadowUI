@@ -1,6 +1,6 @@
 {
   "general" : {
-    "FactionFriend"             : "http://fizzwidget.com/downloads/gfw-factionfriend-4-3.zip"
+    "FactionFriend"             : "http://fizzwidget.com/downloads/gfw-factionfriend-5-2-1.zip"
   },
   
   "wowinterface" : {
@@ -23,7 +23,6 @@
     "Fizzle"                    : "fizzle",
     "GatherMate2"               : "gathermate2",
     "GatherMate2_Data"          : "gathermate2_data",
-    "Grid2"                     : "grid2",
     "InFlight"                  : "inflight-taxi-timer",
     "JPack"                     : "jpack",
     "Postal"                    : "postal",
@@ -32,12 +31,10 @@
     "QuestHubber"               : "questhubber",
     "RangeColors"               : "rangecolors",
     "RangeDisplay"              : "range-display",
-    "RatingBuster"              : "rating-buster",
     "Recount"                   : "recount",
     "ReforgeLite"               : "reforgelite",
     "SilverDragon"              : "silver-dragon",
     "Snoopy Inspect"            : "snoopy-inspect",
-    "TellMeWhen"                : "tellmewhen",
     "X-Perl UnitFrame"          : "xperl",
     "Coordinates"               : "coordinates",
     "InspectEquip"              : "inspect-equip",
