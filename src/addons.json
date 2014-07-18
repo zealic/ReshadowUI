@@ -1,11 +1,11 @@
 {
   "general" : {
-    "FactionFriend"             : "http://fizzwidget.com/downloads/gfw-factionfriend-5-2-1.zip"
+    "FactionFriend"             : "http://fizzwidget.com/downloads/gfw-factionfriend-5-2-1.zip",
+    "JPack"                     : "http://www.curseforge.com/media/files/338/809/JPack-r11.zip"
   },
   
   "wowinterface" : {
-    "OmoniCC"                   : "4836",
-    "PowerAuras"                : "21531"
+    "OmoniCC"                   : "4836"
   },
 
   "curse" : {
@@ -24,7 +24,6 @@
     "GatherMate2"               : "gathermate2",
     "GatherMate2_Data"          : "gathermate2_data",
     "InFlight"                  : "inflight-taxi-timer",
-    "JPack"                     : "jpack",
     "Postal"                    : "postal",
     "MikScrollingBattleText"    : "mik-scrolling-battle-text",
     "Quartz"                    : "quartz",
@@ -34,7 +33,7 @@
     "Recount"                   : "recount",
     "ReforgeLite"               : "reforgelite",
     "SilverDragon"              : "silver-dragon",
-    "X-Perl UnitFrame"          : "xperl",
+    "TellMeWhen"                : "tellmewhen",
     "Coordinates"               : "coordinates",
     "InspectEquip"              : "inspect-equip",
     "TradeSkillInfo"            : "tradeskill-info",

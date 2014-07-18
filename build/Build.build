@@ -20,7 +20,7 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <ThirdArchiveFiles Include="$(SrcDir)\*.zip" />
+    <ThirdArchiveFiles Include="$(SrcDir)\*.zip;$(SrcDir)\*.rar" />
   </ItemGroup>
   
   <Target Name="CleanUp">
@@ -34,7 +34,12 @@
   </Target>
   
   <Target Name="ExtractThirdArchiveFiles">
-    <Exec Command='"$(BuildDir)\unzip.exe" -o "%(ThirdArchiveFiles.Identity)"' WorkingDirectory="$(Content-AddOnsDir)" />
+    <Exec Condition="'%(Extension)' == '.rar'"
+      Command='"$(BuildDir)\unrar.exe" x "%(ThirdArchiveFiles.Identity)"'
+      WorkingDirectory="$(Content-AddOnsDir)" />
+    <Exec Condition="'%(Extension)' == '.zip'"
+      Command='"$(BuildDir)\unzip.exe" -o "%(ThirdArchiveFiles.Identity)"'
+      WorkingDirectory="$(Content-AddOnsDir)" />
   </Target>
   
   <Target Name="ArchiveZip" AfterTargets="Build">
