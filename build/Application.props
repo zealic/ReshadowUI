@@ -2,9 +2,9 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <!-- 5.4 is current WOW version. -->
-    <VersionMajor Condition="'$(VersionMajor)' == ''">5</VersionMajor>
-    <VersionMinor Condition="'$(VersionMinor)' == ''">4</VersionMinor>
-    <VersionBuild Condition="'$(VersionBuild)' == ''">9</VersionBuild>
+    <VersionMajor Condition="'$(VersionMajor)' == ''">6</VersionMajor>
+    <VersionMinor Condition="'$(VersionMinor)' == ''">0</VersionMinor>
+    <VersionBuild Condition="'$(VersionBuild)' == ''">0</VersionBuild>
     <VersionRevision Condition="'$(VersionRevision)' == ''">0</VersionRevision>
     <VersionIdentity Condition="'$(VersionIdentity)' == ''">0000000000000000000000000000000000000000</VersionIdentity>
     <VersionType Condition="'$(VersionType)' == ''">PRODUCTION</VersionType>
