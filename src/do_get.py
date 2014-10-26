@@ -16,14 +16,17 @@ def get_general_download_info(name, id):
 def get_curse_download_info(name, id):
     from BeautifulSoup import BeautifulSoup
     url = "http://www.curse.com/addons/wow/%s/download" % (id)
-    req = urllib2.Request(url)  
+    req = urllib2.Request(url)
+    agent = 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6'
+    req.add_header('user-agent', agent)
     response = urllib2.urlopen(req)
     html = response.read()
     response.close()
     soup = BeautifulSoup(html)
     link = soup.find("a", {"class":"download-link"})["data-href"]
     if link:
-        req = urllib2.Request(link)  
+        req = urllib2.Request(link)
+        req.add_header('user-agent', agent)
         response = urllib2.urlopen(req)
         headers = response.info()
         result = parse_headers(headers)
