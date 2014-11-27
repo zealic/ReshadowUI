@@ -3,11 +3,6 @@
     "FactionFriend"             : "http://fizzwidget.com/downloads/gfw-factionfriend-5-2-1.zip",
     "JPack"                     : "http://www.curseforge.com/media/files/338/809/JPack-r11.zip"
   },
-  
-  "wowinterface" : {
-    "OmoniCC"                   : "4836"
-  },
-
   "curse" : {
     "Ace3"                      : "ace3",
     "_NPCScan"                  : "npcscan",
@@ -31,7 +26,6 @@
     "RangeColors"               : "rangecolors",
     "RangeDisplay"              : "range-display",
     "Recount"                   : "recount",
-    "ReforgeLite"               : "reforgelite",
     "SilverDragon"              : "silver-dragon",
     "TellMeWhen"                : "tellmewhen",
     "Coordinates"               : "coordinates",
