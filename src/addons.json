@@ -23,14 +23,14 @@
     "MikScrollingBattleText"    : "mik-scrolling-battle-text",
     "Quartz"                    : "quartz",
     "QuestHubber"               : "questhubber",
-    "RangeColors"               : "rangecolors",
     "RangeDisplay"              : "range-display",
     "Recount"                   : "recount",
     "SilverDragon"              : "silver-dragon",
     "TellMeWhen"                : "tellmewhen",
-    "Coordinates"               : "coordinates",
     "InspectEquip"              : "inspect-equip",
     "TradeSkillInfo"            : "tradeskill-info",
-    "Vend-o-matic"              : "vendomatic"
+    "Vend-o-matic"              : "vendomatic",
+    "Master Plan"               : "master-plan",
+    "Garrison Mission Manager"  : "garrison-mission-manager"
   }
 }
