@@ -4,8 +4,6 @@
   },
   "curse" : {
     "Ace3"                      : "ace3",
-    "_NPCScan"                  : "npcscan",
-    "_NPCScan.Overlay"          : "npcscan-overlay",
     "ArkInventory"              : "ark-inventory",
     "AtlasLoot Enhanced"        : "atlasloot-enhanced",
     "Broker_Portal"             : "broker-portals",
