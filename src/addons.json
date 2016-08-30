@@ -1,7 +1,6 @@
 {
   "general" : {
-    "FactionFriend"             : "http://fizzwidget.com/downloads/gfw-factionfriend-6-0.zip",
-    "JPack"                     : "http://www.curseforge.com/media/files/338/809/JPack-r11.zip"
+    "FactionFriend"             : "http://fizzwidget.com/downloads/gfw-factionfriend-6-0.zip"
   },
   "curse" : {
     "Ace3"                      : "ace3",
@@ -9,7 +8,6 @@
     "_NPCScan.Overlay"          : "npcscan-overlay",
     "ArkInventory"              : "ark-inventory",
     "AtlasLoot Enhanced"        : "atlasloot-enhanced",
-    "Broker_Equipment"          : "broker_equipment",
     "Broker_Portal"             : "broker-portals",
     "Broker_RecountFu"          : "broker_recountfu",
     "Broker_SysMon"             : "broker_sysmon",
