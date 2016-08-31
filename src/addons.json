@@ -1,6 +1,6 @@
 {
   "general" : {
-    "FactionFriend"             : "http://fizzwidget.com/downloads/gfw-factionfriend-6-0.zip"
+    "FactionFriend"             : "http://fizzwidget.com/downloads/gfw-factionfriend-7-0-2.zip"
   },
   "curse" : {
     "Ace3"                      : "ace3",
@@ -21,10 +21,7 @@
     "Quartz"                    : "quartz",
     "RangeDisplay"              : "range-display",
     "Recount"                   : "recount",
-    "SilverDragon"              : "silver-dragon",
     "TellMeWhen"                : "tellmewhen",
-    "InspectEquip"              : "inspect-equip",
-    "TradeSkillMaster"          : "tradeskill-master",
     "Vend-o-matic"              : "vendomatic",
     "Master Plan"               : "master-plan",
     "Garrison Mission Manager"  : "garrison-mission-manager",
