@@ -3,8 +3,8 @@
   <PropertyGroup>
     <!-- 7.0 is current WOW version. -->
     <VersionMajor Condition="'$(VersionMajor)' == ''">7</VersionMajor>
-    <VersionMinor Condition="'$(VersionMinor)' == ''">0</VersionMinor>
-    <VersionBuild Condition="'$(VersionBuild)' == ''">8</VersionBuild>
+    <VersionMinor Condition="'$(VersionMinor)' == ''">1</VersionMinor>
+    <VersionBuild Condition="'$(VersionBuild)' == ''">0</VersionBuild>
     <VersionRevision Condition="'$(VersionRevision)' == ''">0</VersionRevision>
     <VersionIdentity Condition="'$(VersionIdentity)' == ''">0000000000000000000000000000000000000000</VersionIdentity>
     <VersionType Condition="'$(VersionType)' == ''">PRODUCTION</VersionType>
