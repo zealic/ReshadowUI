@@ -2,8 +2,10 @@
 import os, sys, urllib2
 import threading, time
 sys.path.append(os.path.join(os.getcwd(), "Lib"))
-from ReshadowUI import *
 import Crawler
+
+def log(msg):
+    sys.stdout.write("%s\n" % (msg))
 
 def get_curse_download_info(name, id):
     from BeautifulSoup import BeautifulSoup
