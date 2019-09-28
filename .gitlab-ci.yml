@@ -1,0 +1,27 @@
+include:
+  - remote: https://arp.to/@ci/docker.yml
+
+variables:
+  BEFORE_SCRIPT: |
+    apk add zip unzip
+
+
+build-classic:
+  tags:
+    - homelab
+  only:
+    - master
+    - schedules
+  script:
+    - make build-classic
+    - make upload-classic
+
+build-general:
+  tags:
+    - homelab
+  only:
+    - master
+    - schedules
+  script:
+    - make build-general
+    - make upload-general
