@@ -1,12 +1,14 @@
 {
   "curse" : {
     "ArkInventory"              : "ark-inventory",
-    "Perl-Classic"              : "perl-classic-unit-frames",
-    "AzerothAutoPilot"          : "azeroth-auto-pilot-classic",
+    "DBM"                       : "deadly-boss-mods",
+    "Immersion"                 : "immersion",
     "MikScrollingBattleText"    : "mik-scrolling-battle-text",
+    "Questie"                   : "questie",
     "AutoVendor"                : "autovendor",
     "Quartz"                    : "quartz",
     "Recount"                   : "recount",
-    "AtlasLoot"                 : "atlaslootclassic"
+    "AtlasLoot"                 : "atlaslootclassic",
+    "ZPerl"                     : "ZPerl"
   }
 }

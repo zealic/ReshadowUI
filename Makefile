@@ -8,13 +8,17 @@ CLASSIC_FILE=ReshadowUI-Classic-latest.zip
 
 build-classic: clean
 	@python do_get.py ./addons-classic.json
-	@ls *.zip | xargs -I{} unzip -d $(INTERFACE_DIR) {}
-	@(cd target; zip -r $(CLASSIC_FILE) Interface)
+	@echo Decompressing...
+	@ls *.zip | xargs -I{} unzip -qq -d $(INTERFACE_DIR) {}
+	@echo Packaging...
+	@(cd target; zip -qr $(CLASSIC_FILE) Interface)
 
 build-general: clean
 	@python do_get.py ./addons-general.json
-	@ls *.zip | xargs -I{} unzip -d $(INTERFACE_DIR) {}
-	@(cd target; zip -r $(GENERAL_FILE) Interface)
+	@echo Decompressing ...
+	@ls *.zip | xargs -I{} unzip -qq -d $(INTERFACE_DIR) {}
+	@echo Packaging...
+	@(cd target; zip -qr $(GENERAL_FILE) Interface)
 
 upload-general:
 	@echo Uploading $(GENERAL_FILE) ...
