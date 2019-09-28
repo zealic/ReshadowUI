@@ -1,7 +1,4 @@
 {
-  "general" : {
-    "FactionFriend"             : "http://fizzwidget.com/downloads/gfw-factionfriend-7-0-2.zip"
-  },
   "curse" : {
     "Ace3"                      : "ace3",
     "ArkInventory"              : "ark-inventory",

@@ -1,10 +1,20 @@
 #!/bin/bash
-PACKAGES=$(wildcard *.zip)
+INTERFACE_DIR=./target/Interface/AddOns
+
 
 build-classic: clean
-	@mkdir -p ./target 2> /dev/null
 	@python do_get.py ./addons-classic.json
-	unzip 
+	@ls *.zip | xargs -I{} unzip -d $(INTERFACE_DIR) {}
+	@(cd target; zip -r ReshadowUI-Classic-latest.zip Interface)
 
-clean: $(PACKAGES)
+build-general: clean
+	@python do_get.py ./addons.json
+	@ls *.zip | xargs -I{} unzip -d $(INTERFACE_DIR) {}
+	@(cd target; zip -r ReshadowUI-latest.zip Interface)
+
+clean:
+	@rm -rf *.zip
 	@rm -rf ./target
+	@mkdir -p $(INTERFACE_DIR) 2> /dev/null
+
+.PHONY: clean
