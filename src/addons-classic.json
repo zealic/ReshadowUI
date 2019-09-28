@@ -1,11 +1,12 @@
 {
   "curse" : {
-    "Ace3"                      : "ace3",
-    "ArkInventory"              : "ark-inventory-classic",
+    "ArkInventory"              : "ark-inventory",
     "Perl-Classic"              : "perl-classic-unit-frames",
-    "Questie"                   : "questie",
+    "AzerothAutoPilot"          : "azeroth-auto-pilot-classic",
     "MikScrollingBattleText"    : "mik-scrolling-battle-text",
+    "AutoVendor"                : "autovendor",
     "Quartz"                    : "quartz",
-    "Recount"                   : "recount"
+    "Recount"                   : "recount",
+    "AtlasLoot"                 : "atlaslootclassic",
   }
 }
