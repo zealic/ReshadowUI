@@ -1,47 +1,22 @@
 # -*- coding: utf-8 -*-
 import os, sys, urllib2
 import threading, time
-sys.path.append(os.path.join(sys.path[0], "Lib"))
+sys.path.append(os.path.join(os.getcwd(), "Lib"))
 from ReshadowUI import *
-
-def get_general_download_info(name, id):
-    url = id
-    req = urllib2.Request(url)  
-    response = urllib2.urlopen(req)
-    headers = response.info()
-    result = parse_headers(headers)
-    result.link = id
-    return result
+import Crawler
 
 def get_curse_download_info(name, id):
     from BeautifulSoup import BeautifulSoup
     url = "https://www.curseforge.com/wow/addons/%s/download" % (id)
-    req = urllib2.Request(url)
-    agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36'
-    req.add_header('user-agent', agent)
-    response = urllib2.urlopen(req)
-    html = response.read()
-    response.close()
+    html = Crawler.get_content(url)
     soup = BeautifulSoup(html)
     link = soup.find("p", {"class":"text-sm"}).find("a")["href"]
-    if link:
-        link = 'https://www.curseforge.com' + link
-        req = urllib2.Request(link)
-        req.add_header('user-agent', agent)
-        response = urllib2.urlopen(req)
-        headers = response.info()
-        result = parse_headers(headers)
-        result.link = response.geturl()
-        return result
-    return None
-
-def get_wowinterface_download_info(name, id):
-    url = "http://www.wowinterface.com/downloads/download%s" % (id)
-    req = urllib2.Request(url)  
-    response = urllib2.urlopen(req)
-    headers = response.info()
-    result = parse_headers(headers, response.geturl())
-    result.link = url
+    if not link:
+        raise Exception("Can not found link")
+    link = 'https://www.curseforge.com' + link
+    response = Crawler.get(link, allow_redirects=False)
+    result = type('', (), {})()
+    result.link = response.url
     return result
 
 def get_package_core(name, id , fetcher):
@@ -49,18 +24,26 @@ def get_package_core(name, id , fetcher):
     try:
         log("[%s] Fetching '%s' download info..." % (name, id))
         info = fetcher(name, id)
-        download_link = info.link
-        base_name = None
-        if info.attachment:
-            base_name = info.attachment.name
-        if download_link == None:
+        if info.link == None:
             log("[%s] No download link!" % (name))
         else:
-            log("[%s] Downloading '%s' ..." % (name, download_link))
-            download_file(download_link, os.getcwd(), base_name)
+            log("[%s] Downloading '%s' ..." % (name, info.link))
+            download_file(info)
     except Exception, e:
         return -1, "FAILED, %s" % (str(e),)
     return None, message
+
+def download_file(info):
+    resp = Crawler.get(info.link)
+    filename = os.path.basename(resp.url)
+    file_path = os.path.join(os.getcwd(), filename)
+    target_file = file(file_path, 'wb')
+    try:
+        target_file.write(resp.content)
+    except:
+        raise
+    finally:
+        if not target_file.closed: target_file.close()
 
 def new_task(name, id, fetcher):
     def _task_core():
@@ -77,7 +60,7 @@ def load_configuration(config_file):
   try:
     return json.loads(data)
   except ValueError as e:
-    report_info("Invalid configuration file '%s', %s" % (config_file, e.message))
+    log("Invalid configuration file '%s', %s" % (config_file, e.message))
     exit(EX_INVALID_JSON)
 
 def get_tasks():
