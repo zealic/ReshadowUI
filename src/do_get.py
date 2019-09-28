@@ -23,7 +23,7 @@ def get_curse_download_info(name, id):
     html = response.read()
     response.close()
     soup = BeautifulSoup(html)
-    link = soup.find("a", {"class":"download__link"})["href"]
+    link = soup.find("p", {"class":"text-sm"}).find("a")["href"]
     if link:
         link = 'https://www.curseforge.com' + link
         req = urllib2.Request(link)
@@ -82,7 +82,7 @@ def load_configuration(config_file):
 
 def get_tasks():
     tasks = []
-    data = load_configuration("addons.json")
+    data = load_configuration(sys.argv[1])
     for k in data:
         group = k
         addons = data[k]
