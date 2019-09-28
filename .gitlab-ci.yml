@@ -3,7 +3,7 @@ include:
 
 variables:
   BEFORE_SCRIPT: |
-    apk add python py2-pip pip zip unzip
+    apk add python py2-pip zip unzip
     pip install cfscrape
 
 
