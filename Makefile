@@ -23,7 +23,6 @@ upload-general:
 
 upload-classic:
 	@echo Uploading $(CLASSIC_FILE) ...
-	sleep 1024s
 	@curl --fail -sS -u anonymous: -T "$(TARGET_DIR)/$(CLASSIC_FILE)" "$(UPLOAD_URL)/$(CLASSIC_FILE)"
 	@echo Upload successful.
 
