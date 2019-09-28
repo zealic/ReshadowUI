@@ -19,12 +19,12 @@ build-general: clean
 
 upload-general:
 	echo Uploading $(GENERAL_FILE) ...
-	curl --fail -sS -u anonymous: -T "$(INTERFACE_DIR)/$(GENERAL_FILE)" "$(UPLOAD_URL)/$(GENERAL_FILE)"
+	curl --fail -sS -u anonymous: -T "$(GENERAL_FILE)" "$(UPLOAD_URL)/$(GENERAL_FILE)"
 	echo Upload successful.
 
 upload-classic:
 	echo Uploading $(CLASSIC_FILE) ...
-	curl --fail -sS -u anonymous: -T "$(INTERFACE_DIR)/$(CLASSIC_FILE)" "$(UPLOAD_URL)/$(CLASSIC_FILE)"
+	curl --fail -sS -u anonymous: -T "$(CLASSIC_FILE)" "$(UPLOAD_URL)/$(CLASSIC_FILE)"
 	echo Upload successful.
 
 clean:
