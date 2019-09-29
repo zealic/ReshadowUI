@@ -1,7 +1,6 @@
 {
   "curse" : {
     "ArkInventory"              : "ark-inventory",
-    "DBM"                       : "deadly-boss-mods",
     "Immersion"                 : "immersion",
     "MikScrollingBattleText"    : "mik-scrolling-battle-text",
     "Questie"                   : "questie",
@@ -9,7 +8,6 @@
     "Quartz"                    : "quartz",
     "Recount"                   : "recount",
     "AtlasLoot"                 : "atlaslootclassic",
-    "Auctioneer"                : "auctioneer",
     "ZPerl"                     : "ZPerl"
   }
 }
