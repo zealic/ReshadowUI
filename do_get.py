@@ -12,6 +12,8 @@ def get_curse_download_info(name, id):
     url = "https://www.curseforge.com/wow/addons/%s/download" % (id)
     html = Crawler.get_content(url)
     soup = BeautifulSoup(html)
+    if soup == None:
+        raise Exception("Cloud not fetch html, maybe anti by Cloudflare")
     link = soup.find("p", {"class":"text-sm"}).find("a")["href"]
     if not link:
         raise Exception("Can not found link")
